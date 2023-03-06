@@ -1,8 +1,8 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const connectToMongo = require('./DB')
-// const userRoute = require('./Routes/user')
-const auth = require('./Routes/auth');
+const userRoute = require('./Routes/user')
+const authRoute = require('./Routes/auth');
 
 const app = express();
 // to make server able to take json requests
@@ -18,8 +18,8 @@ connectToMongo();
 
 // routes
 //1. Auth Routes
-app.use('/api/routes',auth);
-app.use('/api/routes',auth);
+app.use('/api/routes',authRoute);
+app.use('/api/users',userRoute);
 
 
 // Listening app
