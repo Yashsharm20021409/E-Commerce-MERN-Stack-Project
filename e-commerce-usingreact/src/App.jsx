@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import ProductList from "./pages/ProductList";
 
 function App() {
-  return (
+  return ( 
     <div className="App">
       <Home/>
       {/* <ProductList/> */}
