@@ -6,6 +6,7 @@ const authRoute = require('./Routes/auth');
 const productRoute = require('./Routes/product');
 const cartRoute = require('./Routes/cart');
 const orderRoute = require('./Routes/order');
+const cors = require("cors")
 
 const app = express();
 // to make server able to take json requests
@@ -20,7 +21,11 @@ connectToMongo();
 
 
 // routes
-//1. Auth Routes
+
+
+// use of cors
+// it is used when client is put any req (api req for data) which is at differ host ex:3000 and backend is at differ host ex:5000 to full fill client req we need cors and without it it can't be possible to do so
+app.use(cors())
 app.use('/api/routes',authRoute);
 app.use('/api/users',userRoute);
 app.use('/api/products',productRoute);

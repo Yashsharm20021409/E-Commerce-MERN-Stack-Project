@@ -54,7 +54,7 @@ router.get('/find/:id', async (req, res) => {
 })
 
 // get All Products
-router.get('/allproducts', async (req, res) => {
+router.get('/', async (req, res) => {
 
     // query for fetching new data
     // use this syntax in req new use in below line
