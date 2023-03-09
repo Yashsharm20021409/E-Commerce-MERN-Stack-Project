@@ -70,21 +70,21 @@ const MenuItem = styled.div`
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate("/login");
+  const handleNavigation = (type) => {
+    
+    if (type === "reg") {
+      navigate("/register");
+    } 
+    else if (type === "login") {
+      navigate("/login");
+    } 
+    else if (type === "logo") {
+      navigate("/");
+    } 
+    else if (type === "cart") {
+      navigate("/cart");
+    }
   };
-
-  const handleRegister = () => {
-    navigate("/register");
-  };
-
-  const handleLogo = ()=>{
-    navigate("/");
-  }
-
-  const handleCart = ()=>{
-    navigate("/cart");
-  }
 
   return (
     <Container>
@@ -97,15 +97,15 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-            <Logo onClick={handleLogo}>E-Shop.</Logo>
+          <Logo onClick={() => handleNavigation("logo")}>E-Shop.</Logo>
         </Center>
         <Right>
-          <MenuItem onClick={handleRegister}>REGISTER</MenuItem>
-          <MenuItem onClick={handleLogin}>SIGN IN</MenuItem>
-          <MenuItem onClick={handleCart}>
-              <Badge badgeContent={4} color="primary" overlap="rectangular">
-                <ShoppingCartOutlined />
-              </Badge>
+          <MenuItem onClick={() => handleNavigation("reg")}>REGISTER</MenuItem>
+          <MenuItem onClick={() => handleNavigation("login")}>SIGN IN</MenuItem>
+          <MenuItem onClick={() => handleNavigation("cart")}>
+            <Badge badgeContent={4} color="primary" overlap="rectangular">
+              <ShoppingCartOutlined />
+            </Badge>
           </MenuItem>
         </Right>
       </Wrapper>

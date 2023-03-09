@@ -128,6 +128,9 @@ const Product = () => {
   const id = location.pathname.split("/")[2];
 
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
 
   useEffect(() => {
     const getProduct = async () => {
@@ -137,6 +140,17 @@ const Product = () => {
 
     getProduct();
   }, [id]);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } 
+    else if (type === "inc") {
+      setQuantity(quantity+1);
+    }
+  };
+
+  const handleAddCart = ()=>{}
   return (
     <Container>
       <Navbar />
@@ -153,27 +167,26 @@ const Product = () => {
             <Filter>
               <FilterTitle>Color: </FilterTitle>
               {product.color?.map((c) => (
-                <FilterColor color={c} key={c} />
+                <FilterColor color={c} key={c}  onClick={()=>setColor(c)}/>
               ))}
             </Filter>
             <Filter>
               <FilterTitle>Size: </FilterTitle>
-              <FilterSize>
-                {
-                  product.size?.map((s)=>(
-                    <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                  ))
-                }
+              {/* because it is our select tag that why we use onChange method */}
+              <FilterSize onChange={(e)=>setSize(e.target.value)}>
+                {product.size?.map((s) => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove style={{cursor:"pointer"}} onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <Add style={{cursor:"pointer"}} onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button>
+            <Button onClick={handleAddCart}>
               <ShoppingCartOutlined
                 style={{ marginRight: "3px", color: "teal" }}
               />{" "}
