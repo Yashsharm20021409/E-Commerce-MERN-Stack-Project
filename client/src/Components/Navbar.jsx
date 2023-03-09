@@ -1,9 +1,9 @@
-import { Badge} from "@material-ui/core";
+import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
-import {mobile} from '../Responsive'
-import { Link } from "react-router-dom";
+import { mobile } from "../Responsive";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
@@ -26,7 +26,7 @@ const Left = styled.div`
 const Language = styled.span`
   cursor: pointer;
   font-size: 14px;
-  ${mobile({display:"none"})}
+  ${mobile({ display: "none" })}
 `;
 
 const SearchContainer = styled.div`
@@ -48,6 +48,7 @@ const Center = styled.div`
 `;
 const Logo = styled.h1`
   font-weight: bold;
+  cursor: pointer;
   ${mobile({ fontSize: "17px" })}
 `;
 const Right = styled.div`
@@ -62,11 +63,29 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 20px;
-  /* text-align: center; */ 
+  /* text-align: center; */
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
-`
+`;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
+  const handleLogo = ()=>{
+    navigate("/");
+  }
+
+  const handleCart = ()=>{
+    navigate("/cart");
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -74,19 +93,19 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input placeholder="Search" />
-            <Search style={{color:"gray",fontSize:16}}/>
+            <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Link to="/"><Logo>E-Shop.</Logo></Link>
+            <Logo onClick={handleLogo}>E-Shop.</Logo>
         </Center>
         <Right>
-          <Link to="/register"><MenuItem>REGISTER</MenuItem> </Link>
-          <Link to="/login"><MenuItem>SIGN IN</MenuItem></Link>
-          <MenuItem>
-            <Link to="/cart"><Badge badgeContent={4} color="primary" overlap="rectangular">
-                <ShoppingCartOutlined/>
-            </Badge></Link>
+          <MenuItem onClick={handleRegister}>REGISTER</MenuItem>
+          <MenuItem onClick={handleLogin}>SIGN IN</MenuItem>
+          <MenuItem onClick={handleCart}>
+              <Badge badgeContent={4} color="primary" overlap="rectangular">
+                <ShoppingCartOutlined />
+              </Badge>
           </MenuItem>
         </Right>
       </Wrapper>
