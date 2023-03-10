@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { mobile } from "../Responsive";
 
@@ -55,6 +56,10 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const navigation = useNavigate();
+  const handleClick = ()=>{
+    navigation("/");
+  }
   return (
     <Container>
       <Wrapper>
@@ -68,7 +73,7 @@ const Register = () => {
             <Input placeholder="confirm password" />
             <Agreement> By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b></Agreement>
-            <Button>CREATE</Button>
+            <Button onClick={handleClick}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>
