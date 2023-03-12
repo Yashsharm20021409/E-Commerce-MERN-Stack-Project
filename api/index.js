@@ -6,7 +6,9 @@ const authRoute = require('./Routes/auth');
 const productRoute = require('./Routes/product');
 const cartRoute = require('./Routes/cart');
 const orderRoute = require('./Routes/order');
+const stripeRoute = require('./Routes/stripe')
 const cors = require("cors")
+
 
 const app = express();
 // to make server able to take json requests
@@ -31,6 +33,7 @@ app.use('/api/users',userRoute);
 app.use('/api/products',productRoute);
 app.use('/api/carts',cartRoute);
 app.use('/api/orders',orderRoute);
+app.use('/api/checkout',stripeRoute);
 
 
 // Listening app

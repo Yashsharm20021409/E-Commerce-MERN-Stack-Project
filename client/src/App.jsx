@@ -11,6 +11,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import Success from "./pages/Success";
 
 function App() {
   const user = false;
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/register" element={user ? <Navigate to="/"/> : <Register/>}></Route>
           <Route exact path="/product/:id" element={<Product/>}></Route>
           <Route exact path="/cart" element={<Cart/>}></Route>
+          <Route exact path="/success" element={<Success/>}></Route>
         </Routes>
       </Router>
   
