@@ -28,7 +28,7 @@ connectToMongo();
 // use of cors
 // it is used when client is put any req (api req for data) which is at differ host ex:3000 and backend is at differ host ex:5000 to full fill client req we need cors and without it it can't be possible to do so
 app.use(cors())
-app.use('/api/routes',authRoute);
+app.use('/api/auth',authRoute);
 app.use('/api/users',userRoute);
 app.use('/api/products',productRoute);
 app.use('/api/carts',cartRoute);

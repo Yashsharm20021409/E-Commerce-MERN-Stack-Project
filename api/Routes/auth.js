@@ -26,12 +26,15 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 
     try {
+
         const user = await User.findOne({
             username: req.body.username
         });
 
-        !user && res.status(401).json("Wrong Username");
-        
+        if (!user) {
+            return res.status(401).json("Wrong Username");
+        }
+
 
         //decrypt => decode the pass
         const hashedPassword = CryptoJs.AES.decrypt(
@@ -51,7 +54,7 @@ router.post('/login', async (req, res) => {
             },
             process.env.JWT_SEC,
             // means token expires in three days and after that again you have to login
-            {expiresIn:"3d"}
+            { expiresIn: "3d" }
         )
 
 
@@ -59,9 +62,12 @@ router.post('/login', async (req, res) => {
         const { password, ...others } = user._doc;
 
         // if all Okay return the user
-        res.status(200).json({...others,jsonWebToken});
+        res.status(200).json({ ...others, jsonWebToken });
+
     } catch (err) {
-        res.status(500).json(err);
+        // here if we send response our server get crashed
+        // res.status(500).json(err);
+        console.log(err)
     }
 })
 

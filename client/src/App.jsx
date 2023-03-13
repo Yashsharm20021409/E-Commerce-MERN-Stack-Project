@@ -12,9 +12,12 @@ import {
   Navigate,
 } from "react-router-dom";
 import Success from "./pages/Success";
+import { useSelector } from "react-redux";
 
 function App() {
-  const user = false;
+  // redirect to home page for currentUser
+  // but on refreshing the page again we are able to access LoginPage to avoid these we use(presist in userRedx or store)
+  const user = useSelector(state=>state.user.currentUser);
   return (
       <Router>
         <Routes>
