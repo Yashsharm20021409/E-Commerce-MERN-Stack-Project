@@ -1,7 +1,7 @@
-// import { useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useState } from "react";
-import { login } from "../Redux/apiCalls";
 import {Container,Wrapper,Title,Form,Input,Button,Link,Error} from "./Style/LoginCss"
+import { login } from "../Redux/apiCalls";
 import {useDispatch, useSelector} from "react-redux"
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
   const [username,setUserName] = useState("");
   const [password,setPassword] = useState("");
 
-  // const navigation = useNavigate();
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
   const handleLoginClick = (e)=>{
@@ -21,6 +21,10 @@ const Login = () => {
 
   const {isFetching,error} = useSelector((state)=>state.user)
 
+  const handleClick =() =>{
+    navigation('/register')
+  }
+
   return (
 
     <Container>
@@ -31,8 +35,8 @@ const Login = () => {
           <Input placeholder="password" type="password" onChange={(e)=>setPassword(e.target.value)}/>
           <Button onClick={handleLoginClick} disabled={isFetching}>LOGIN</Button>
           {error &&<Error>Something went Wrong</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link >DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link onClick={handleClick}>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

@@ -18,7 +18,7 @@ const Cart = () => {
   const navigate = useNavigate();
   
   const cart = useSelector((state) => state.cart);
-  console.log(KEY)
+  // console.log(KEY)
 
   const [stripeToken,setStripeToken] = useState(null);
   const onToken = (token) => {
